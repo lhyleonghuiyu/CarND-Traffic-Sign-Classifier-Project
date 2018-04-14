@@ -20,11 +20,11 @@ The goals / steps of this project are the following:
 [image1]: ./examples/visualization.jpg "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image4]: ./examples/3_60kmh.jpg "Traffic Sign 1"
+[image5]: ./examples/4_70kmh.png "Traffic Sign 2"
+[image6]: ./examples/21_doublecurve.png "Traffic Sign 3"
+[image7]: ./examples/22_bumpy.png "Traffic Sign 4"
+[image8]: ./examples/39_keepleft.png "Traffic Sign 5"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -34,10 +34,10 @@ The goals / steps of this project are the following:
 
 #### 1.Summary of data set In the code
 
-Code cell 2 contains the code used to generate the summary statistics of the traffic signs data set. The following is a brief summary of the data set: 
+In[68] and In[53] contain the code used to generate the summary statistics of the traffic signs data set. The following is a brief summary of the data set: 
 
 * The size of training set is 34799
-* The size of the validation set is 
+* The size of the validation set is 4410
 * The size of test set is 12630
 * The shape of a traffic sign image is 32x32x3, the 3 channels storing RGB information
 * The number of unique classes/labels in the data set is 43
@@ -47,6 +47,8 @@ Code cell 2 contains the code used to generate the summary statistics of the tra
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
 ![alt text][image1]
+
+Out[53] contains a histogram of the training set, validation set and test set in the aforementioned order. An interesting observation is that the frequency distribution of the output classes seem to be rather similar in all three sets of data. 
 
 ### Design and Test a Model Architecture
 
@@ -75,20 +77,23 @@ My final model consisted of the following layers:
 | RELU    		| RELU Activation Function			|
 | Max pooling 2x2	| 2x2 stride, outputs 5x5x16			|
 | Fully Connected Layer | 5x5x16, outputs 256				|
-| Fully Connected Layer | outputs 84 with dropout of 0.5		|
+| Fully Connected Layer | outputs 120 with dropout of 0.5		|
 | Fully Connected Layer | outputs n_classes				|
 
+The code for the neural net architecture may be found in code cell In[96].
 
-#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+
+#### 3. Training parameters
 
 To train the model, the following parameters were used: 
 * Adam Optimizer: The gradient descent used to optimize the weights trained rather well, hence no changes were made to this from the base code. 
 * Batch size of 128: The data set was too large and therefore had to be broken down into smaller sets. At the same time, we would not want the batch size to be too small as this would result in multiple iterations 
-* 100 epochs: With the dropout layer, the training took a larger number of epochs to converge.
-* Learning rate of 0.001: Based on tuning after several attempts between 0.001, 0.005, and 0.01, it was found that the learning rate of 0.001 resulted in the best accuracy out of the three values. 
+* 1400 epochs: With the dropout layer, the training took a larger number of epochs to converge.
+* Learning rate of 0.001: Based on tuning after several attempts between 0.001, 0.002, 0.005, and 0.01, it was found that the learning rate of 0.001 resulted in the best accuracy out of the three values. 
 
 
 #### 4. Chosen Architecture and Approach 
+
 I used the LeNet architecture which was proposed by Yann Lecun, as it has been proven to be a highly accurate image classifier when trained over a large number of epochs with tuned hyperparameters. 
 
 However, the parameters in the fully connected layers were modified slightly from the neural net architecture provided in the deep learning lectures: 
@@ -98,10 +103,10 @@ However, the parameters in the fully connected layers were modified slightly fro
 
 My final model results were:
 * training set accuracy of 100%
-* validation set accuracy of ? 
-* test set accuracy of ?
+* validation set accuracy of 94.5%
+* test set accuracy of 92.6%
 
- 
+It was observed that possibly due to the dropout layer, the convergence proved more to be a range of accuracies, rather than a single accuracy value, which was observed when the dropout layer was not implemented originally. 
 
 ### Test a Model on New Images
 
@@ -112,38 +117,35 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
+| Image			|     Prediction		       		| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| 60kmh		      	| 60kmh						| 
+| 70kmh     		| U-turn					|
+| Doublecurve		| 					|
+| Bumpy Road	      	| Bumpy Road 					|
+| Keep Left		| Keep Left 					|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 92.6%. 
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in code cell In[76] of the notebook. 
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+The table below shows the top 5 softmax predictions based on probabilities output from the model for each image. 
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+|	Image      	|     Prediction (Probability)		| 
+|:---------------------:|:-------------------------------------:| 
+| 	60kmh  		|  60kmh(1)				| 
+| 	70kmh		| 30kmh (0.645), Traffic Signals (0.218), Pedestrians (0.136), 20kmh (1.93e-3), General Caution (2.94e-5)		|
+| Double curve 		| General Caution (0.998), Right-of-way at next intersection (1.83e-4), Slippery road (1.61e-7), Beware of ice and snow (1.4e-22), Children Crossing (7.11e-26) | 	
+|  Bumpy Road		| Bumpy Road (1)			|	
+| Keep Left 		| Keep Left (1), Turn Right ahead (6.14e-15)	|
 
-
-For the second image ... 
 
 
