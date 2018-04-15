@@ -20,8 +20,8 @@ The goals / steps of this project are the following:
 [image1]: ./examples/visualization.jpg "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/3_60kmh.jpg "Traffic Sign 1"
-[image5]: ./examples/4_70kmh.png "Traffic Sign 2"
+[image4]: ./examples/3_60mphh.jpg "Traffic Sign 1"
+[image5]: ./examples/4_70mph.png "Traffic Sign 2"
 [image6]: ./examples/21_doublecurve.png "Traffic Sign 3"
 [image7]: ./examples/22_bumpy.png "Traffic Sign 4"
 [image8]: ./examples/39_keepleft.png "Traffic Sign 5"
@@ -44,11 +44,7 @@ In[68] and In[53] contain the code used to generate the summary statistics of th
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
-
-![alt text][image1]
-
-Out[53] contains a histogram of the training set, validation set and test set in the aforementioned order. An interesting observation is that the frequency distribution of the output classes seem to be rather similar in all three sets of data. 
+As an exploration of the data set,  histograms of the training, validation and test set were plot to observe the distribution of the data. Out[53] contains a histogram of the training set, validation set and test set in the aforementioned order. An interesting observation is that the frequency distribution of the output classes seem to be rather similar in all three sets of data. 
 
 ### Design and Test a Model Architecture
 
@@ -126,7 +122,7 @@ Here are the results of the prediction:
 |:---------------------:|:---------------------------------------------:| 
 | 60kmh		      	| 60kmh						| 
 | 70kmh     		| U-turn					|
-| Doublecurve		| 					|
+| Doublecurve		| General Caution				|
 | Bumpy Road	      	| Bumpy Road 					|
 | Keep Left		| Keep Left 					|
 
