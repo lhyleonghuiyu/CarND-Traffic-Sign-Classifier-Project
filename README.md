@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 [image1]: ./examples/visualization.jpg "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/3_60mphh.jpg "Traffic Sign 1"
+[image4]: ./examples/3_60mph.jpg "Traffic Sign 1"
 [image5]: ./examples/4_70mph.png "Traffic Sign 2"
 [image6]: ./examples/21_doublecurve.png "Traffic Sign 3"
 [image7]: ./examples/22_bumpy.png "Traffic Sign 4"
