@@ -78,7 +78,7 @@ My final model consisted of the following layers:
 | Fully Connected Layer | outputs 120 with dropout of 0.5		|
 | Fully Connected Layer | outputs n_classes				|
 
-The code for the neural net architecture may be found in code cell In[96].
+The code for the neural net architecture may be found in code cell In[41].
 
 
 #### 3. Training parameters
@@ -134,7 +134,7 @@ The model was able to correctly guess 2 of the 5 traffic signs, which gives an a
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in code cell In[76] of the notebook. 
+The code for making predictions on my final model is located in code cell In[95] of the notebook. 
 
 The table below shows the top 5 softmax predictions based on probabilities output from the model for each image. 
 
