@@ -34,7 +34,7 @@ The goals / steps of this project are the following:
 
 #### 1.Summary of data set In the code
 
-In[68] and In[53] contain the code used to generate the summary statistics of the traffic signs data set. The following is a brief summary of the data set: 
+In[4] contains the code used to generate the summary statistics of the traffic signs data set. The following is a brief summary of the data set: 
 
 * The size of training set is 34799
 * The size of the validation set is 4410
@@ -44,19 +44,21 @@ In[68] and In[53] contain the code used to generate the summary statistics of th
 
 #### 2. Include an exploratory visualization of the dataset.
 
-As an exploration of the data set,  histograms of the training, validation and test set were plot to observe the distribution of the data. Out[53] contains a histogram of the training set, validation set and test set in the aforementioned order. An interesting observation is that the frequency distribution of the output classes seem to be rather similar in all three sets of data. 
+As an exploration of the data set,  histograms of the training, validation and test set were plot to observe the distribution of the data. Out[6] contains a histogram of the training set, validation set and test set in the aforementioned order. An interesting observation is that the frequency distribution of the output classes seem to be rather similar in all three sets of data. 
 
 ### Design and Test a Model Architecture
 
 #### 1. Image Pre-processing
 
-As a first step, I decided to convert the images to grayscale to reduce the amount of information being fed to the neural network. The traffic signs may be identified primarily based on their shapes and figures without color by the human eye, hence in a similar sense, feeding this information to the neural network would reduce the amount of information being processed, thereby saving time and also improving the accuracy of the network. 
+After some testing a range of values for normalization, I noticed that the CNN produced the best results when the image data was normalized between a range of 0.1 to 0.9. Here is a list of ranges attempted with the neural net: 
 
-Here is an example of a traffic sign image before and after grayscaling.
+1. -1 to 1 
+2. -0.5 to 0.5 
+3. 0 to 1 
+4. 0.05 to 0.95 
+5. 0.1 to 0.9 
 
-![alt text][image2]
-
-As a last step, I normalized the image data values to between -0.5 and 0.5 as this would be the optimal values in order for the LeNet architecture to work effectively. 
+From the different trial and errors, it was observed that (5) produced the optimal result with the given CNN architecture. 
 
 
 #### 2.Final model architecture
@@ -65,7 +67,7 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        	| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x1 Grayscale image  		|
+| Input         		| 32x32x3 Grayscale image  		|
 | Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6  	| 
 | RELU 			| RELU	Activation function			|
 | Max pooling 2x2      	| 2x2 stride,  outputs 14x14x6			| 
@@ -84,7 +86,7 @@ The code for the neural net architecture may be found in code cell In[96].
 To train the model, the following parameters were used: 
 * Adam Optimizer: The gradient descent used to optimize the weights trained rather well, hence no changes were made to this from the base code. 
 * Batch size of 128: The data set was too large and therefore had to be broken down into smaller sets. At the same time, we would not want the batch size to be too small as this would result in multiple iterations 
-* 1400 epochs: With the dropout layer, the training took a larger number of epochs to converge.
+* 80 epochs: With the dropout layer, the training took a larger number of epochs to converge.
 * Learning rate of 0.001: Based on tuning after several attempts between 0.001, 0.002, 0.005, and 0.01, it was found that the learning rate of 0.001 resulted in the best accuracy out of the three values. 
 
 
@@ -99,8 +101,8 @@ However, the parameters in the fully connected layers were modified slightly fro
 
 My final model results were:
 * training set accuracy of 100%
-* validation set accuracy of 94.5%
-* test set accuracy of 92.6%
+* validation set accuracy of 94.9%
+* test set accuracy of 93.3%
 
 It was observed that possibly due to the dropout layer, the convergence proved more to be a range of accuracies, rather than a single accuracy value, which was observed when the dropout layer was not implemented originally. 
 
@@ -127,7 +129,7 @@ Here are the results of the prediction:
 | Keep Left		| Keep Left 					|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 92.6%. 
+The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%. This does not compare too favorably to the accuracy on the test set of 93.3%. One possible reason could be that the model had been overfitting, thereby becoming unable to properly classify the traffic signs despite having a high accuracy earlier in the training and validation data set.  
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -137,11 +139,11 @@ The table below shows the top 5 softmax predictions based on probabilities outpu
 
 |	Image      	|     Prediction (Probability)		| 
 |:---------------------:|:-------------------------------------:| 
-| 	60kmh  		|  60kmh(1)				| 
-| 	70kmh		| 30kmh (0.645), Traffic Signals (0.218), Pedestrians (0.136), 20kmh (1.93e-3), General Caution (2.94e-5)		|
-| Double curve 		| General Caution (0.998), Right-of-way at next intersection (1.83e-4), Slippery road (1.61e-7), Beware of ice and snow (1.4e-22), Children Crossing (7.11e-26) | 	
-|  Bumpy Road		| Bumpy Road (1)			|	
-| Keep Left 		| Keep Left (1), Turn Right ahead (6.14e-15)	|
+| 	60kmh  		|  60kmh(0.989), 50kmh (0.0110)				| 
+| 	70kmh		| General Caution (1.00)		|
+| Double curve 		| Slippery Road (0.985), Bicycles Crossing (0.015) | 	
+|  Bumpy Road		| Bumpy Road (1.00)			|	
+| Keep Left 		| Yield (1.00)	|
 
 
 
