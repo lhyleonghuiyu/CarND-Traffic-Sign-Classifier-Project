@@ -58,7 +58,7 @@ After some testing a range of values for normalization, I noticed that the CNN p
 4. 0.05 to 0.95 
 5. 0.1 to 0.9 
 
-From the different trial and errors, it was observed that (5) produced the optimal result with the given CNN architecture. 
+From the different trial and errors, it was observed that (5) produced the optimal result with the given CNN architecture. This final configuration was obtained after cross-referencing with several other methods of normalization made available online. 
 
 
 #### 2.Final model architecture
@@ -96,7 +96,7 @@ I used the LeNet architecture which was proposed by Yann Lecun, as it has been p
 
 However, the parameters in the fully connected layers were modified slightly from the neural net architecture provided in the deep learning lectures: 
 
-1. A dropout layer was implemented to retain the weights that were perceived to be relevant. While this network architecture took a larger number of epochs to converge, the addition of a single droupt layer at the second last layer improved the accuracy by approximately 3%. 
+1. A dropout layer was implemented to retain the weights that were perceived to be relevant. While this network architecture took a larger number of epochs to converge, the addition of a single dropout layer at the second last layer improved the accuracy by approximately 2%. 
 2. The number of neurons in each fully connected hidden layer was increased to allow the neural net to detect a greater number of features from the images, before deciding whether these features were relevant in the final classification or not through the use of the dropout layer. Detecting more featres would allow a better regression fit in the final layer. 
 
 My final model results were:
@@ -115,7 +115,7 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-Some of the images chosen were seemed to be similar to several other shapes. For example, the double curve sign could be interpreted by the network as other signs instead due to its shape. Such an image selecton would therefore test the limits of the classifying network.  
+Some of the images chosen were seemed to be similar to several other shapes. For example, the double curve sign could be interpreted by the network as other signs instead due to its shape. Such an image selecton would therefore test the limits of the classifying network. 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
