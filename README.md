@@ -115,6 +115,7 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
+Some of the images chosen were seemed to be similar to several other shapes. For example, the double curve sign could be interpreted by the network as other signs instead due to its shape. Such an image selecton would therefore test the limits of the classifying network.  
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -123,10 +124,10 @@ Here are the results of the prediction:
 | Image			|     Prediction		       		| 
 |:---------------------:|:---------------------------------------------:| 
 | 60kmh		      	| 60kmh						| 
-| 70kmh     		| U-turn					|
-| Doublecurve		| General Caution				|
+| 70kmh     		| General Caution					|
+| Doublecurve		| Slippery Road				|
 | Bumpy Road	      	| Bumpy Road 					|
-| Keep Left		| Keep Left 					|
+| Keep Left		| Yield 					|
 
 
 The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%. This does not compare too favorably to the accuracy on the test set of 93.3%. One possible reason could be that the model had been overfitting, thereby becoming unable to properly classify the traffic signs despite having a high accuracy earlier in the training and validation data set.  
