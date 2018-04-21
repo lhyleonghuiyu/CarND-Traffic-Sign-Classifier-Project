@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image5]: ./examples/4_70mph.png "Traffic Sign 2"
 [image6]: ./examples/21_doublecurve.png "Traffic Sign 3"
 [image7]: ./examples/22_bumpy.png "Traffic Sign 4"
-[image8]: ./examples/39_keepleft.png "Traffic Sign 5"
+[image8]: ./examples/25_roadworks.png "Traffic Sign 5"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -101,8 +101,8 @@ However, the parameters in the fully connected layers were modified slightly fro
 
 My final model results were:
 * training set accuracy of 100%
-* validation set accuracy of 94.9%
-* test set accuracy of 93.3%
+* validation set accuracy of 94.7%
+* test set accuracy of 93.2%
 
 It was observed that possibly due to the dropout layer, the convergence proved more to be a range of accuracies, rather than a single accuracy value, which was observed when the dropout layer was not implemented originally. 
 
@@ -124,13 +124,13 @@ Here are the results of the prediction:
 | Image			|     Prediction		       		| 
 |:---------------------:|:---------------------------------------------:| 
 | 60kmh		      	| 60kmh						| 
-| 70kmh     		| General Caution					|
+| 70kmh     		| Priority Road					|
 | Doublecurve		| Slippery Road				|
 | Bumpy Road	      	| Bumpy Road 					|
-| Keep Left		| Yield 					|
+| Roadworks		| Roadworks					|
 
 
-The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%. This does not compare too favorably to the accuracy on the test set of 93.3%. One possible reason could be that the model had been overfitting, thereby becoming unable to properly classify the traffic signs despite having a high accuracy earlier in the training and validation data set.  
+The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. This does not compare too favorably to the accuracy on the test set of 93.3%. One possible reason could be that the signs had similar outer shapes and inner colours to other signs For example, both the slippery road and double curve signs have red borders, white filling, and triangular shapes. Furthermore, both signs have curved features to similar angles. With such similar features, it may be possible for the neural network to pick up the same features, but classify as a slippery road instead.  
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -140,11 +140,11 @@ The table below shows the top 5 softmax predictions based on probabilities outpu
 
 |	Image      	|     Prediction (Probability)		| 
 |:---------------------:|:-------------------------------------:| 
-| 	60kmh  		|  60kmh(0.989), 50kmh (0.0110)				| 
-| 	70kmh		| General Caution (1.00)		|
-| Double curve 		| Slippery Road (0.985), Bicycles Crossing (0.015) | 	
+| 	60kmh  		|  60kmh(1.00)				| 
+| 	70kmh		| Priority Road (1.00)		|
+| Double curve 		| Roadworks (1.00) | 	
 |  Bumpy Road		| Bumpy Road (1.00)			|	
-| Keep Left 		| Yield (1.00)	|
+| Roadworks 		| Roadworks (1.00)	|
 
 
 
